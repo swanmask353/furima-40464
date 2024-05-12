@@ -42,7 +42,7 @@
 |postage        | references | null: false, foreign_key: true|
 |region         | references | null: false, foreign_key: true|
 |shipping_date  | references | null: false, foreign_key: true|
-| price         | text       | null: false |
+| price         | integer       | null: false |
 
 ### Association
 

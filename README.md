@@ -22,7 +22,7 @@
 | Column | Type       | Options     |
 | ------ | -----------| ----------- |
 | user   | references | null: false,foreign_key: true  |
-| room   | references | null: false,foreign_key: true  |
+| item   | references | null: false,foreign_key: true  |
 
 
 ### Association
@@ -37,12 +37,12 @@
 | content       | text       | null: false |
 | item_name     | text       | null: false |
 | discription   | text       | null: false |
-|category       | references | null: false, foreign_key: true|
-|condition      | references | null: false, foreign_key: true|
-|postage        | references | null: false, foreign_key: true|
-|region         | references | null: false, foreign_key: true|
-|shipping_date  | references | null: false, foreign_key: true|
-| price         | integer       | null: false |
+|category       | references | null: false |
+|condition      | references | null: false |
+|postage        | references | null: false |
+|region         | references | null: false |
+|shipping_date  | references | null: false |
+| price         | integer    | null: false |
 
 ### Association
 
@@ -54,9 +54,9 @@
 
 | Column    | Type       | Options             |
 | ------    | ---------- | ------------------- |
-| content   | text       | null: false |
-| item      | references | null: false, foreign_key: true |
-| user      | references | null: false, foreign_key: true |
+| comment   | text       | null: false |
+| user_id   | references | null: false, foreign_key: true |
+| item_id   | references | null: false, foreign_key: true |
 
 
 ### Association

@@ -1,24 +1,65 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| family_name        | string | null: false |
+| first_name         | string | null: false |
+| nick_name          | string | null: false |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false |
 
-* Ruby version
 
-* System dependencies
+### Association
 
-* Configuration
+- has_many :user_items
+- has_many :items, through: :user_items
 
-* Database creation
 
-* Database initialization
+## user_items テーブル
 
-* How to run the test suite
+| Column | Type       | Options     |
+| ------ | -----------| ----------- |
+| user   | references | null: false,foreign_key: true  |
+| room   | references | null: false,foreign_key: true  |
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+### Association
 
-* ...
+- belongs to : user
+- belongs to :item
+
+## itemsテーブル
+
+| Column        | Type       | Options             |
+| ------        | ---------- | ------------------- |
+| content       | text       | null: false |
+| item_name     | text       | null: false |
+| discription   | text       | null: false |
+|category       | references | null: false, foreign_key: true|
+|condition      | references | null: false, foreign_key: true|
+|postage        | references | null: false, foreign_key: true|
+|region         | references | null: false, foreign_key: true|
+|shipping_date  | references | null: false, foreign_key: true|
+| price         | text       | null: false |
+
+### Association
+
+- has_many :users, through: :user_items
+- has_many :comments
+
+
+## comments テーブル
+
+| Column    | Type       | Options             |
+| ------    | ---------- | ------------------- |
+| content   | text       | null: false |
+| item      | references | null: false, foreign_key: true |
+| user      | references | null: false, foreign_key: true |
+
+
+### Association
+
+- belongs_to item
+- belongs_to :user

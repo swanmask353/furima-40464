@@ -1,10 +1,10 @@
 # テーブル設計
 
-## users テーブル
+## Users テーブル
 
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| family_name        | string | null: false |
+| last_name          | string | null: false |
 | first_name         | string | null: false |
 | nick_name          | string | null: false |
 | email              | string | null: false, unique: true |
@@ -13,53 +13,61 @@
 
 ### Association
 
-- has_many :user_items
-- has_many :items, through: :user_items
+- has_many :products
+- has_many :purchase_records
+- has_many :shipping_addresses
 
 
-## user_items テーブル
-
-| Column | Type       | Options     |
-| ------ | -----------| ----------- |
-| user   | references | null: false,foreign_key: true  |
-| item   | references | null: false,foreign_key: true  |
-
-
-### Association
-
-- belongs to : user
-- belongs to :item
-
-## itemsテーブル
+## Productsテーブル
 
 | Column        | Type       | Options             |
 | ------        | ---------- | ------------------- |
-| content       | text       | null: false |
-| item_name     | text       | null: false |
-| discription   | text       | null: false |
-|category       | references | null: false |
-|condition      | references | null: false |
-|postage        | references | null: false |
-|region         | references | null: false |
-|shipping_date  | references | null: false |
+| user_id       | references | null: false, foreign_key: true |
+| title         | string     | null: false |
+| description   | text       | null: false |
 | price         | integer    | null: false |
-
-### Association
-
-- has_many :users, through: :user_items
-- has_many :comments
-
-
-## comments テーブル
-
-| Column    | Type       | Options             |
-| ------    | ---------- | ------------------- |
-| comment   | text       | null: false |
-| user_id   | references | null: false, foreign_key: true |
-| item_id   | references | null: false, foreign_key: true |
+|category       | enum       | null: false |
+|condition      | enum       | null: false |
+|shipping_cost  | enum       | null: false |
+|shipping_region| enum       | null: false |
+|shipping_duration| enum     | null: false |
+|image_url      | string     | null: false |
 
 
 ### Association
 
-- belongs_to item
-- belongs_to :user
+- belongs_to :users
+- has_one purchase_records
+
+
+## Purchase Records テーブル
+
+| Column              | Type       | Options             |
+| ------              | ---------- | ------------------- |
+| user_id             | references | null: false, foreign_key: true |
+| product_id          | references | null: false, foreign_key: true |
+| shipping_address_id | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :products
+- has_many :users
+- has_many :shipping_Addresses
+
+## Shipping Addresses テーブル
+
+| Column        | Type       | Options             |
+| ------        | ---------- | ------------------- |
+| user_id       | references | null: false, foreign_key: true |
+| postal_code   | string     | null: false |
+| prefecture    | string     | null: false |
+| city          | string     | null: false |
+| address_line1 | string     | null: false |
+| address_line2 | string     | null: false |
+| phone_number  | string     | null: false |
+
+
+### Association
+
+- belongs_to :users
+- has_many :purchase_records

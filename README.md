@@ -20,18 +20,18 @@
 
 ## Productsテーブル
 
-| Column        | Type       | Options             |
-| ------        | ---------- | ------------------- |
-| user_id       | references | null: false, foreign_key: true |
-| title         | string     | null: false |
-| description   | text       | null: false |
-| price         | integer    | null: false |
-|category       | enum       | null: false |
-|condition      | enum       | null: false |
-|shipping_cost  | enum       | null: false |
-|shipping_region| enum       | null: false |
-|shipping_duration| enum     | null: false |
-|image_url      | string     | null: false |
+| Column             | Type       | Options             |
+| ------             | ---------- | ------------------- |
+| user_id            | references | null: false, foreign_key: true |
+| title              | string     | null: false |
+| description        | text       | null: false |
+| price              | integer    | null: false |
+|category_id         | integer    | null: false |
+|condition_id        | integer    | null: false |
+|shipping_cost_id    | integer    | null: false |
+|shipping_region_id  | integer    | null: false |
+|shipping_duration_id| integer  | null: false |
+|image_url           | string     | null: false |
 
 
 ### Association

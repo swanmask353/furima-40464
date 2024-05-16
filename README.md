@@ -33,7 +33,6 @@
 |shipping_cost_id    | integer    | null: false |
 |prefecture_id       | integer    | null: false |
 |shipping_duration_id| integer    | null: false |
-|image_url           | string     | null: false |
 
 
 ### Association

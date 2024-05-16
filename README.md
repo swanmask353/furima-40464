@@ -6,7 +6,10 @@
 | ------------------ | ------ | ----------- |
 | last_name          | string | null: false |
 | first_name         | string | null: false |
-| nick_name          | string | null: false |
+| last_name_kana     | string | null: false |
+| first_name_kana    | string | null: false |
+| nickname           | string | null: false |
+| birthday           | date   | null: false |
 | email              | string | null: false, unique: true |
 | encrypted_password | string | null: false |
 
@@ -15,29 +18,28 @@
 
 - has_many :products
 - has_many :purchase_records
-- has_many :shipping_addresses
 
 
 ## Productsテーブル
 
 | Column             | Type       | Options             |
 | ------             | ---------- | ------------------- |
-| user_id            | references | null: false, foreign_key: true |
+| user               | references | null: false, foreign_key: true |
 | title              | string     | null: false |
 | description        | text       | null: false |
 | price              | integer    | null: false |
 |category_id         | integer    | null: false |
 |condition_id        | integer    | null: false |
 |shipping_cost_id    | integer    | null: false |
-|shipping_region_id  | integer    | null: false |
+|prefecture_id       | integer    | null: false |
 |shipping_duration_id| integer  | null: false |
 |image_url           | string     | null: false |
 
 
 ### Association
 
-- belongs_to :users
-- has_one purchase_records
+- belongs_to :user
+- has_one :purchase_record
 
 
 ## Purchase Records テーブル
@@ -50,24 +52,23 @@
 
 ### Association
 
-- belongs_to :products
-- has_many :users
-- has_many :shipping_Addresses
+- belongs_to :product
+- belongs_to :user
+- has_one :shipping_Addresses
 
 ## Shipping Addresses テーブル
 
-| Column        | Type       | Options             |
-| ------        | ---------- | ------------------- |
-| user_id       | references | null: false, foreign_key: true |
-| postal_code   | string     | null: false |
-| prefecture    | string     | null: false |
-| city          | string     | null: false |
-| address_line1 | string     | null: false |
-| address_line2 | string     | null: false |
-| phone_number  | string     | null: false |
+| Column          | Type       | Options             |
+| ------          | ---------- | ------------------- |
+| purchase_record | references | null: false, foreign_key: true |
+| postal_code     | string     | null: false |
+| prefecture_id   | integer    | null: false |
+| city            | string     | null: false |
+| address_line1   | string     | null: false |
+| address_line2   | string     |             |
+| phone_number    | string     | null: false |
 
 
 ### Association
 
-- belongs_to :users
-- has_many :purchase_records
+- belongs_to :purchase_record

@@ -32,7 +32,7 @@
 |condition_id        | integer    | null: false |
 |shipping_cost_id    | integer    | null: false |
 |prefecture_id       | integer    | null: false |
-|shipping_duration_id| integer  | null: false |
+|shipping_duration_id| integer    | null: false |
 |image_url           | string     | null: false |
 
 
@@ -46,15 +46,15 @@
 
 | Column              | Type       | Options             |
 | ------              | ---------- | ------------------- |
-| user_id             | references | null: false, foreign_key: true |
-| product_id          | references | null: false, foreign_key: true |
+| user                | references | null: false, foreign_key: true |
+| product             | references | null: false, foreign_key: true |
 | shipping_address_id | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :product
 - belongs_to :user
-- has_one :shipping_Addresses
+- belongs_to :product
+- has_one :shipping_address
 
 ## Shipping Addresses テーブル
 

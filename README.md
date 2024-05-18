@@ -47,7 +47,7 @@
 | ------              | ---------- | ------------------- |
 | user                | references | null: false, foreign_key: true |
 | product             | references | null: false, foreign_key: true |
-| shipping_address_id | references | null: false, foreign_key: true |
+
 
 ### Association
 

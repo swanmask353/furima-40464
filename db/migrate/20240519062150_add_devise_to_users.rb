@@ -9,9 +9,9 @@ class AddDeviseToUsers < ActiveRecord::Migration[7.0]
       t.string :last_name_kana,     null: false, default: ""
       t.string :first_name_kana,    null: false, default: ""
       t.string :nickname,           null: false, default: ""
-      t.date :birthday,             null: false, default: ""
+      t.date :birthday,             null: false
       t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
+      t.string :encrypted_password, null: false, default: nil
 
       ## Recoverable
       t.string   :reset_password_token

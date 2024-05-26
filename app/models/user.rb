@@ -6,10 +6,9 @@ class User < ApplicationRecord
 
   # Validations
   validates :nickname, presence: true
-  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP, message: "must include @" }
-  validates :password, presence: true, length: { minimum: 6 }, format: { with: /\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+\z/, message: "must include both letters and numbers" }
-  validates :last_name, presence: true, format: { with: /\A[一-龥ぁ-んァ-ヶー]+\z/, message: "must be in full-width characters (kanji, hiragana, or katakana)" }
-  validates :first_name, presence: true, format: { with: /\A[一-龥ぁ-んァ-ヶー]+\z/, message: "must be in full-width characters (kanji, hiragana, or katakana)" }
+  validates :password, format: { with: /\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+\z/, message: "must include both letters and numbers" }
+  validates :last_name, presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: "must be in full-width characters (kanji, hiragana, or katakana)" }
+  validates :first_name, presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: "must be in full-width characters (kanji, hiragana, or katakana)" }
   validates :last_name_kana, presence: true, format: { with: /\A[ァ-ヶー]+\z/, message: "must be in full-width katakana" }
   validates :first_name_kana, presence: true, format: { with: /\A[ァ-ヶー]+\z/, message: "must be in full-width katakana" }
   validates :birthday, presence: true

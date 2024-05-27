@@ -20,7 +20,7 @@
 - has_many :purchase_records
 
 
-## Productsテーブル
+## Itemsテーブル
 
 | Column             | Type       | Options             |
 | ------             | ---------- | ------------------- |
@@ -46,7 +46,7 @@
 | Column              | Type       | Options             |
 | ------              | ---------- | ------------------- |
 | user                | references | null: false, foreign_key: true |
-| product             | references | null: false, foreign_key: true |
+| item             | references | null: false, foreign_key: true |
 
 
 ### Association

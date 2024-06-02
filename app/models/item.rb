@@ -6,6 +6,10 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shipping_cost
   belongs_to_active_hash :shipping_duration
 
-  validates :price, presence: true,
-  numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+  belongs_to :user
+  has_one_attached :image
+
+  validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+  validates :description, presence: true
+  validates :image, presence: true
 end

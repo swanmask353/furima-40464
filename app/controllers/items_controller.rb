@@ -1,5 +1,29 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, only: [:new,:create]
+  
   def index
     #@items = Item.all
   end
+
+  def new
+    @item = Item.new
+  end
+
+  def create
+    @item = Item.new(item_params)
+    @item.user_id = current_user.id
+    
+    if @item.save
+      redirect_to items_path, notice: 'Item was successfully created.'
+    else
+      flash.now[:alert] = 'Failed to create item. Please check your input.'
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def item_params
+    params.require(:item).permit(:title, :description, :category_id, :condition_id, :shipping_cost_id, :prefecture_id, :shipping_duration_id, :price, :image)
+  end  
 end

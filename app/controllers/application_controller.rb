@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :basic_auth, if: :production?
-
+  
   protected
 
   def configure_permitted_parameters
@@ -19,4 +19,6 @@ class ApplicationController < ActionController::Base
   def production?
     Rails.env.production?
   end
+
+
 end

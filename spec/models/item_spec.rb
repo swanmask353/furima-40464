@@ -13,6 +13,12 @@ RSpec.describe Item, type: :model do
     end
 
     context '異常な場合' do
+      it 'titleが空では保存できない' do
+        @item.title = ''
+        @item.valid?
+        expect(@item.errors[:title]).to include("can't be blank")
+      end
+      
       it 'priceが空では保存できない' do
         @item.price = nil
         @item.valid?

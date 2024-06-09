@@ -8,6 +8,11 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_one_attached :image
+  #has_one :purchase_record
+
+  #def sold_out?
+    #self.purchase_record.present?
+  #end
 
   validates :title, presence: true
   validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }

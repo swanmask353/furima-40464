@@ -26,6 +26,10 @@ class ItemsController < ApplicationController
     @category_name = @item.category.name
   end
   
+  def edit
+    @item = Item.find(params[:id])
+  end
+
 
   private
 

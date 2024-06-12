@@ -28,6 +28,11 @@ class ItemsController < ApplicationController
   
   def edit
     @item = Item.find(params[:id])
+    @categories = Category.all
+    @conditions = Condition.all
+    @shipping_costs = ShippingCost.all
+    @prefectures = Prefecture.all
+    @shipping_durations = ShippingDuration.all
   end
 
 
